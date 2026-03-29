@@ -61,6 +61,12 @@ This is useful if you want to:
 * Override specific icons
 
 ---
+## Search for icons in the official Pixel Icon Library
+
+You can search for icons in the official Pixel Icon Library by HackerNoon
+
+[https://pixeliconlibrary.com/](https://pixeliconlibrary.com/)
+---
 
 ## 🚀 Usage
 
