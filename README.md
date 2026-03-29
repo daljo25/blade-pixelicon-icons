@@ -1,104 +1,220 @@
-# Blade Icons Template
+# Blade Pixelicon Icons
 
-<a href="https://github.com/blade-organization/blade-heroicons/actions?query=workflow%3ATests">
-    <img src="https://github.com/blade-organization/blade-heroicons/workflows/Tests/badge.svg" alt="Tests">
-</a>
-<a href="https://packagist.org/packages/blade-organization/blade-heroicons">
-    <img src="https://img.shields.io/packagist/v/blade-organization/blade-heroicons" alt="Latest Stable Version">
-</a>
-<a href="https://packagist.org/packages/blade-organization/blade-heroicons">
-    <img src="https://img.shields.io/packagist/dt/blade-organization/blade-heroicons" alt="Total Downloads">
-</a>
+Blade UI Kit package for the **Pixel Icon Library by HackerNoon**.
 
-> This is a template repository for new icon packages for [Blade Icons](https://github.com/driesvints/blade-icons). Start a new repo with this and replace the relevant things below:
-> 
-> 1. `blade-organization` with your GitHub organization
-> 2. `blade-heroicons` with your repository name
-> 3. `Blade Heroicons` & `Blade Icons Template` with your icon set name
-> 4. Any other reference to `Heroicons` with your icon set name
-> 5. `Blade Developer` with your name
-> 
-> Then, make sure [the implementation](./src) is correct, that you set up [icon generation](https://github.com/driesvints/blade-icons#generating-icons) and that [your tests](./tests) pass. And remove this quote block from your readme. When you've published your package on Packagist, make sure to send it in to [the Blade Icons package list](https://github.com/driesvints/blade-icons#icon-packages).
+This package provides **450+ SVG icons** ready to use in Laravel Blade using the same developer experience as other Blade UI Kit icon sets.
 
-A package to easily make use of [Heroicons](https://github.com/refactoringui/heroicons) in your Laravel Blade views.
+## ✨ Features
 
-For a full list of available icons see [the SVG directory](resources/svg) or preview them at [heroicons.com](https://heroicons.com/).
+* 450+ Pixel icons included
+* Supports **regular, solid, brands & purcats**
+* Multiple Blade UI Kit usage styles
+* Original SVGs are **not modified**
+* Color customization via `fill` / `style`
+* Zero runtime dependencies
 
-## Requirements
+---
 
-- PHP 8.2 or higher
-- Laravel 10.0 or higher
-
-## Installation
+## 📦 Installation
 
 ```bash
-composer require blade-organization/blade-heroicons
+composer require daljo25/blade-pixelicon-icons
 ```
 
-## Updating
+---
 
-Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
+## ⚙️ Publishing
 
-## Blade Icons
+You may publish the config file and/or the SVG icons if you want to customize them.
 
-Blade Heroicons uses Blade Icons under the hood. Please refer to [the Blade Icons readme](https://github.com/driesvints/blade-icons) for additional functionality. We also recommend to [enable icon caching](https://github.com/driesvints/blade-icons#caching) with this library.
-
-## Configuration
-
-Blade Heroicons also offers the ability to use features from Blade Icons like default classes, default attributes, etc. If you'd like to configure these, publish the `blade-heroicons.php` config file:
+### Publish config
 
 ```bash
-php artisan vendor:publish --tag=blade-heroicons-config
+php artisan vendor:publish --tag=blade-pixelicon-icons-config
 ```
 
-## Usage
+This will publish:
 
-Icons can be used as self-closing Blade components which will be compiled to SVG icons:
-
-```blade
-<x-heroicon-o-adjustments/>
+```
+config/blade-pixelicon-icons.php
 ```
 
-You can also pass classes to your icon components:
+---
 
-```blade
-<x-heroicon-o-adjustments class="w-6 h-6 text-gray-500"/>
-```
-
-And even use inline styles:
-
-```blade
-<x-heroicon-o-adjustments style="color: #555"/>
-```
-
-The solid icons can be referenced like this:
-
-```blade
-<x-heroicon-s-adjustments/>
-```
-
-### Raw SVG Icons
-
-If you want to use the raw SVG icons as assets, you can publish them using:
+### Publish SVG icons
 
 ```bash
-php artisan vendor:publish --tag=blade-heroicons --force
+php artisan vendor:publish --tag=blade-pixelicon-icons
 ```
 
-Then use them in your views like:
+This will publish all icons to:
+
+```
+resources/svg/vendor/blade-pixelicon-icons
+```
+
+This is useful if you want to:
+
+* Modify SVG files manually
+* Remove icons you don’t use
+* Optimize icons
+* Override specific icons
+
+---
+
+## 🚀 Usage
+
+This package follows the Blade UI Kit icon conventions.
+
+You can use **any of the 3 supported syntaxes**.
+
+### 1️⃣ Blade Component
 
 ```blade
-<img src="{{ asset('vendor/blade-heroicons/o-adjustments.svg') }}" width="10" height="10"/>
+<x-pixelicon-user />
+<x-pixelicon-home />
+<x-pixelicon-android />
 ```
 
-## Changelog
+---
 
-Check out the [CHANGELOG](CHANGELOG.md) in this repository for all the recent changes.
+### 2️⃣ `@svg` Directive
 
-## Maintainers
+```blade
+@svg('pixelicon-home')
+@svg('pixelicon-user')
+```
 
-Blade Heroicons is developed and maintained by Blade Developer.
+---
 
-## License
+### 3️⃣ `svg()` Helper
 
-Blade Heroicons is open-sourced software licensed under [the MIT license](LICENSE.md).
+```blade
+{{ svg('pixelicon-android') }}
+```
+
+---
+
+## 🎨 Changing Icon Color (IMPORTANT)
+
+Pixelicon SVGs **do not include fill or stroke attributes** by design.
+
+This package injects `fill="currentColor"` automatically via config so icons inherit color from CSS.
+
+⚠️ Because of how these SVGs are built:
+
+**Color must be applied using:**
+
+* `fill=""`
+* `style=""`
+* inline color via parent element
+
+**❌ Tailwind text-* classes WILL NOT work reliably.**
+
+---
+
+### ✔️ Correct ways to change color
+
+#### Using `fill`
+
+```blade
+<x-pixelicon-user fill="red" />
+```
+
+```blade
+@svg('pixelicon-home', 'w-6 h-6', ['fill' => '#16a34a'])
+```
+
+---
+
+#### Using inline style
+
+```blade
+<x-pixelicon-user style="color:#0ea5e9" />
+```
+
+```blade
+{{ svg('pixelicon-android')->style('color:#f97316') }}
+```
+
+---
+
+#### Using parent element color
+
+```blade
+<div style="color: purple">
+    <x-pixelicon-user />
+</div>
+```
+
+---
+
+### ❌ Not supported
+
+```blade
+{{-- This will NOT work reliably --}}
+<x-pixelicon-user class="text-red-500" />
+```
+
+This limitation comes from the original Pixelicon SVG structure and is intentional to keep the source files unmodified.
+
+---
+
+## 🧩 Icon Prefix
+
+All icons use the prefix:
+
+```
+pixelicon-
+```
+
+Examples:
+
+```
+pixelicon-user
+pixelicon-home
+pixelicon-github
+pixelicon-android
+pixelicon-youtube
+```
+
+---
+
+## 🗂 Icon Sets Included
+
+Icons are generated from the official Pixel Icon Library:
+
+* Regular
+* Solid
+* Brands
+* Purcats
+
+All icons are merged into a single set for convenience.
+
+---
+
+## ⚙️ Config
+
+Config file:
+`config/blade-pixelicon-icons.php`
+
+You normally don’t need to change anything, but it allows you to:
+
+* Change default attributes
+* Override global icon behavior
+
+---
+
+## 🧪 Testing
+
+```bash
+composer test
+```
+
+---
+
+## 📄 License
+
+[MIT](LICENSE.md) © Daljomar Morillo 
+
+[Pixel Icon Library by HackerNoon](https://github.com/hackernoon/pixel-icon-library) is used under its respective license MIT for code and Creative Commons for the icons.
