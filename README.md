@@ -1,8 +1,14 @@
 # Blade Pixelicon Icons
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/daljo25/blade-pixelicon-icons.svg?style=flat-square)](https://packagist.org/packages/daljo25/blade-pixelicon-icons)
+[![Total Downloads](https://img.shields.io/packagist/dt/daljo25/blade-pixelicon-icons.svg?style=flat-square)](https://packagist.org/packages/daljo25/blade-pixelicon-icons)
+[![License](https://img.shields.io/packagist/l/daljo25/blade-pixelicon-icons.svg?style=flat-square)](LICENSE.md)
+
 Blade UI Kit package for the **Pixel Icon Library by HackerNoon**.
 
 This package provides **450+ SVG icons** ready to use in Laravel Blade using the same developer experience as other Blade UI Kit icon sets.
+
+![Thumbnail](Thumbnail.png)
 
 ## ✨ Features
 
