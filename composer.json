@@ -1,7 +1,7 @@
 {
   "name": "daljo25/blade-pixelicon-icons",
   "type": "laravel-package",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Blade Icons package for Pixel Icon Library.",
   "keywords": [
     "laravel",
